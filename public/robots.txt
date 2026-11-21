@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://selah.samireddy.com/sitemap.xml

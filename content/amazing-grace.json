@@ -1,0 +1,36 @@
+{
+  "format": "churchdeck-song-1",
+  "song": {
+    "id": "0584e10e-7141-4770-950d-3d76db5b983e",
+    "title": "Amazing Grace",
+    "primaryLanguage": "English",
+    "secondaryLanguage": "",
+    "credits": "John Newton · 1779 · Public domain",
+    "sections": [
+      {
+        "key": "v1",
+        "label": "Verse 1",
+        "primary": "Amazing grace! How sweet the sound,\nThat saved a wretch like me!\nI once was lost, but now am found,\nWas blind, but now I see.",
+        "secondary": ""
+      },
+      {
+        "key": "v2",
+        "label": "Verse 2",
+        "primary": "’Twas grace that taught my heart to fear,\nAnd grace my fears relieved;\nHow precious did that grace appear\nThe hour I first believed.",
+        "secondary": ""
+      },
+      {
+        "key": "v3",
+        "label": "Verse 3",
+        "primary": "Through many dangers, toils and snares,\nI have already come;\n’Tis grace hath brought me safe thus far,\nAnd grace will lead me home.",
+        "secondary": ""
+      }
+    ],
+    "arrangement": [
+      "v1",
+      "v2",
+      "v3",
+      "v1"
+    ]
+  }
+}
