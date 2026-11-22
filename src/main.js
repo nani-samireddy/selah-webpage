@@ -1,4 +1,5 @@
 import "./style.css";
+import { animateWorkspace } from "./motion.js";
 
 const workspaces = {
   programs: {
@@ -25,6 +26,7 @@ const workspaces = {
 };
 const tabs = [...document.querySelectorAll("[data-workspace]")];
 function selectWorkspace(tab) {
+  if (tab.getAttribute("aria-selected") === "true") return;
   const key = tab.dataset.workspace;
   const data = workspaces[key];
   tabs.forEach((item) => {
@@ -43,6 +45,7 @@ function selectWorkspace(tab) {
   document
     .querySelector("#workspace-panel")
     .setAttribute("aria-labelledby", tab.id);
+  animateWorkspace();
 }
 tabs.forEach((tab, index) => {
   tab.addEventListener("click", () => selectWorkspace(tab));
