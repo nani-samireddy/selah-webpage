@@ -4,6 +4,13 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
+        appDownload: fileURLToPath(
+          new URL("./download/index.html", import.meta.url),
+        ),
+        changelog: fileURLToPath(
+          new URL("./changelog/index.html", import.meta.url),
+        ),
+        catalog: fileURLToPath(new URL("./catalog.html", import.meta.url)),
         home: fileURLToPath(new URL("./index.html", import.meta.url)),
         downloads: fileURLToPath(
           new URL("./downloads/index.html", import.meta.url),

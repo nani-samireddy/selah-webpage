@@ -1,13 +1,13 @@
 @font-face {
   font-family: Inter;
-  src: url("/assets/Inter.ttf") format("truetype");
+  src: url("/assets/Inter.woff2") format("woff2");
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
 }
 @font-face {
   font-family: "Noto Sans Telugu";
-  src: url("/assets/NotoSansTelugu.ttf") format("truetype");
+  src: url("/assets/NotoSansTelugu.woff2") format("woff2");
   font-weight: 100 900;
   font-display: swap;
 }
@@ -1874,4 +1874,26 @@ h2 {
   .content-types > div:hover .type-icon {
     transform: none;
   }
+}
+.site-facts {
+  max-width: 1000px;
+  padding-top: 65px;
+  padding-bottom: 65px;
+}
+.site-facts h2 {
+  font-size: 36px;
+  line-height: 1.2;
+}
+.site-facts p {
+  font-size: 16px;
+  line-height: 1.9;
+  color: #aaa5ae;
+}
+.site-facts a {
+  color: #d2bce5;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.button[aria-current="page"] {
+  color: #171716 !important;
 }

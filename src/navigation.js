@@ -20,3 +20,5 @@ mobileNav
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") closeMenu();
 });
+const footerYear = document.querySelector("#year");
+if (footerYear) footerYear.textContent = new Date().getFullYear();
