@@ -1,0 +1,69 @@
+{
+  "format": "churchdeck-template-1",
+  "template": {
+    "name": "Warm paper scripture",
+    "kind": "scripture",
+    "slide": {
+      "name": "Warm paper scripture",
+      "background": "#f3f0e6",
+      "ambientOpacity": 0,
+      "notes": "",
+      "elements": [
+        {
+          "kind": "text",
+          "name": "Reference",
+          "binding": "Scripture reference",
+          "text": "Psalm 23:1",
+          "x": 160,
+          "y": 100,
+          "width": 1600,
+          "height": 70,
+          "fontSize": 32,
+          "fontFamily": "Inter",
+          "color": "#44644f",
+          "opacity": 1,
+          "rotation": 0,
+          "visible": true,
+          "locked": false,
+          "alignment": "center"
+        },
+        {
+          "kind": "text",
+          "name": "Passage",
+          "binding": "Scripture text",
+          "text": "Yahweh is my shepherd:\nI shall lack nothing.",
+          "x": 160,
+          "y": 280,
+          "width": 1600,
+          "height": 560,
+          "fontSize": 84,
+          "fontFamily": "Georgia",
+          "color": "#243d32",
+          "opacity": 1,
+          "rotation": 0,
+          "visible": true,
+          "locked": false,
+          "alignment": "center"
+        },
+        {
+          "kind": "text",
+          "name": "Translation",
+          "binding": "Version",
+          "text": "WEB",
+          "x": 160,
+          "y": 960,
+          "width": 1600,
+          "height": 60,
+          "fontSize": 25,
+          "fontFamily": "Inter",
+          "color": "#657765",
+          "opacity": 1,
+          "rotation": 0,
+          "visible": true,
+          "locked": false,
+          "alignment": "center"
+        }
+      ]
+    }
+  }
+}

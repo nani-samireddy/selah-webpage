@@ -1,0 +1,69 @@
+{
+  "format": "churchdeck-template-1",
+  "template": {
+    "name": "Midnight lyrics",
+    "kind": "song",
+    "slide": {
+      "name": "Midnight lyrics",
+      "background": "#20242f",
+      "ambientOpacity": 0,
+      "notes": "",
+      "elements": [
+        {
+          "kind": "text",
+          "name": "Song title",
+          "binding": "Title",
+          "text": "Amazing Grace",
+          "x": 160,
+          "y": 80,
+          "width": 1600,
+          "height": 60,
+          "fontSize": 28,
+          "fontFamily": "Inter",
+          "color": "#c6bfd7",
+          "opacity": 1,
+          "rotation": 0,
+          "visible": true,
+          "locked": false,
+          "alignment": "center"
+        },
+        {
+          "kind": "text",
+          "name": "Lyrics",
+          "binding": "Primary lyrics",
+          "text": "Amazing grace! How sweet the sound,\nThat saved a wretch like me!",
+          "x": 160,
+          "y": 250,
+          "width": 1600,
+          "height": 620,
+          "fontSize": 90,
+          "fontFamily": "Inter",
+          "color": "#f6f3ec",
+          "opacity": 1,
+          "rotation": 0,
+          "visible": true,
+          "locked": false,
+          "alignment": "center"
+        },
+        {
+          "kind": "text",
+          "name": "Credits",
+          "binding": "Credits",
+          "text": "John Newton · 1779 · Public domain",
+          "x": 160,
+          "y": 980,
+          "width": 1600,
+          "height": 60,
+          "fontSize": 23,
+          "fontFamily": "Inter",
+          "color": "#bcb8c7",
+          "opacity": 1,
+          "rotation": 0,
+          "visible": true,
+          "locked": false,
+          "alignment": "center"
+        }
+      ]
+    }
+  }
+}

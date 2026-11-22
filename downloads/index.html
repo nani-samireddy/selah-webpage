@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#101010" />
+    <title>Downloads — Bibles, songs & templates for Selah</title>
+    <meta
+      name="description"
+      content="Download Bible translations, song collections, service presets, and editable templates for Selah. Start with a resource, then make it your own."
+    />
+    <link rel="canonical" href="https://selah.samireddy.com/downloads/" />
+    <meta property="og:title" content="The Selah resource library" />
+    <meta
+      property="og:description"
+      content="Bibles, songs, presets, and templates. A thoughtful starting point for your next service."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <link
+      rel="preload"
+      href="/assets/Inter.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin
+    />
+  </head>
+  <body class="downloads-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Selah home"
+        ><svg class="mark" viewBox="0 0 400 400" aria-hidden="true">
+          <use href="#selah-mark" /></svg
+        ><span>Selah</span></a
+      >
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="/#features">Features</a><a href="/#workflow">How it works</a
+        ><a href="/downloads/" aria-current="page">Downloads</a
+        ><a href="/#faq">FAQ</a
+        ><a
+          href="https://github.com/nani-samireddy/Selah"
+          target="_blank"
+          rel="noopener noreferrer"
+          >GitHub</a
+        >
+      </nav>
+      <div class="nav-actions">
+        <a class="button button-small button-white" href="/#get-selah"
+          >Explore the app</a
+        ><button
+          class="menu-button"
+          aria-label="Open navigation"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span></span><span></span>
+        </button>
+      </div>
+      <nav
+        id="mobile-nav"
+        class="mobile-nav"
+        aria-label="Mobile navigation"
+        hidden
+      >
+        <a href="/#features">Features</a><a href="/#workflow">How it works</a
+        ><a href="/downloads/" aria-current="page">Downloads</a
+        ><a href="/#faq">FAQ</a
+        ><a href="https://github.com/nani-samireddy/Selah">GitHub</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="resource-hero light-panel">
+        <p class="eyebrow">THE SELAH RESOURCE LIBRARY</p>
+        <h1>A thoughtful<br /><span class="serif">starting point.</span></h1>
+        <p class="resource-intro">
+          Bibles, songs, presets, and templates.<br />Less starting from
+          scratch. More making it yours.
+        </p>
+        <a
+          class="button button-dark"
+          href="/downloads/files/selah-starter-kit.zip"
+          download
+          >Download the starter kit</a
+        >
+        <p class="starter-caption" id="starter-caption">
+          Songs, templates, and a service preset · ZIP
+        </p>
+        <div class="resource-hero-tags" aria-label="Resource types">
+          <span>Bibles</span><span>Song collections</span
+          ><span>Service presets</span><span>Templates</span>
+        </div>
+      </section>
+      <section
+        class="resource-library section-wrap"
+        aria-labelledby="library-title"
+      >
+        <div class="library-heading">
+          <div>
+            <p class="eyebrow muted">READY WHEN YOU ARE</p>
+            <h2 id="library-title">
+              Find your next<br /><span class="serif">beginning.</span>
+            </h2>
+          </div>
+          <p>
+            Download a resource. Bring it into Selah.<br />Make it part of your
+            service.
+          </p>
+        </div>
+        <div class="resource-toolbar">
+          <div
+            class="resource-filters"
+            role="group"
+            aria-label="Filter resources"
+          >
+            <button data-category="all" aria-pressed="true">
+              All resources</button
+            ><button data-category="bibles" aria-pressed="false">Bibles</button
+            ><button data-category="songs" aria-pressed="false">Songs</button
+            ><button data-category="presets" aria-pressed="false">
+              Presets</button
+            ><button data-category="templates" aria-pressed="false">
+              Templates
+            </button>
+          </div>
+          <label class="resource-search"
+            ><svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="10.5" cy="10.5" r="6.5" />
+              <path d="m16 16 5 5" /></svg
+            ><span class="sr-only">Search resources</span
+            ><input
+              type="search"
+              placeholder="Search resources"
+              id="resource-search"
+              autocomplete="off"
+          /></label>
+        </div>
+        <p
+          class="resource-count"
+          id="resource-count"
+          role="status"
+          aria-live="polite"
+        ></p>
+        <div class="resource-grid" id="resource-grid"></div>
+        <div class="resource-empty" id="resource-empty" hidden>
+          <h3>No resources found.</h3>
+          <p>Try another title, language, or resource type.</p>
+          <button class="button button-white" id="clear-search">
+            Clear filters
+          </button>
+        </div>
+        <noscript
+          ><p>
+            Enable JavaScript to filter this library, or
+            <a href="/downloads/files/selah-starter-kit.zip" download
+              >download the starter kit</a
+            >
+            directly.
+          </p></noscript
+        >
+      </section>
+      <section class="resource-guide section-wrap" id="import-guide">
+        <div class="guide-panel">
+          <div>
+            <p class="eyebrow">FROM DOWNLOAD TO SERVICE</p>
+            <h2>
+              A little setup.<br /><span class="serif">Then you’re ready.</span>
+            </h2>
+            <p>
+              Unzip collections first. Import each resource<br
+                class="desktop-break"
+              />
+              in its matching Selah workspace.
+            </p>
+          </div>
+          <div class="guide-list">
+            <div>
+              <span>Bibles</span>
+              <p>
+                Libraries → Bible → Import translation. These three versions
+                already come with Selah; import only a missing version.
+              </p>
+            </div>
+            <div>
+              <span>Song collections</span>
+              <p>
+                Libraries → Songs → Import song. Choose each JSON file
+                separately. ZIP collections aren’t imported directly.
+              </p>
+            </div>
+            <div>
+              <span>Service presets</span>
+              <p>
+                Programs → Import. Choose the .churchprogram file, then update
+                the service title, date, and content.
+              </p>
+            </div>
+            <div>
+              <span>Templates</span>
+              <p>
+                Libraries → Templates → Import. Choose the .churchtemplate file,
+                then apply it to compatible lyrics or Scripture.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="resource-note section-wrap">
+        <h3>Made to be used with care.</h3>
+        <p>
+          Song collections include original demonstration lyrics and a
+          public-domain hymn. They are not a licensed commercial worship
+          catalog. Bible packages retain their source attribution and license
+          notices. Layouts and service presets are editable starting points;
+          preview your content before presenting.
+        </p>
+        <p>
+          Inter and Noto Sans Telugu are included with Selah. The Warm paper
+          template uses Georgia; choose another serif font if it isn’t
+          installed.
+        </p>
+        <a href="/#get-selah" class="subtle-link">Get to know the Selah app</a>
+      </section>
+    </main>
+    <footer class="site-footer section-wrap">
+      <div class="footer-top">
+        <a class="brand" href="/"
+          ><svg class="mark" viewBox="0 0 400 400" aria-hidden="true">
+            <use href="#selah-mark" /></svg
+          ><span>Selah</span></a
+        >
+        <p>Make room for the moment.</p>
+        <nav aria-label="Footer navigation">
+          <a href="/#features">Features</a
+          ><a href="/downloads/" aria-current="page">Downloads</a
+          ><a href="/#faq">FAQ</a
+          ><a
+            href="https://github.com/nani-samireddy/Selah"
+            target="_blank"
+            rel="noopener noreferrer"
+            >GitHub</a
+          >
+        </nav>
+      </div>
+      <div class="footer-wordmark" aria-hidden="true">selah</div>
+      <div class="footer-bottom">
+        <span>© <span id="year">2026</span> Selah</span
+        ><span>Made with care. For the moments that matter.</span
+        ><a
+          href="https://samireddy.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          >By Sami Reddy</a
+        >
+      </div>
+    </footer>
+    <svg
+      class="svg-definitions"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <defs>
+        <symbol id="selah-mark" viewBox="0 0 400 400">
+          <path
+            d="M100 100A50 50 0 0 1 50 150A50 50 0 0 1 0 100A50 50 0 0 1 50 50A50 50 0 0 1 100 100ZM400 100A50 50 0 0 1 350 150A50 50 0 0 0 300 200L300 300A50 50 0 0 1 250 350L150 350A50 50 0 0 1 100 300A50 50 0 0 1 150 250A50 50 0 0 0 200 200L200 100A50 50 0 0 1 250 50L350 50A50 50 0 0 1 400 100Z"
+          />
+        </symbol>
+      </defs>
+    </svg>
+    <script type="module" src="/src/downloads.js"></script>
+  </body>
+</html>

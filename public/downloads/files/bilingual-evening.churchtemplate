@@ -1,0 +1,87 @@
+{
+  "format": "churchdeck-template-1",
+  "template": {
+    "name": "Bilingual evening",
+    "kind": "bilingual",
+    "slide": {
+      "name": "Bilingual evening",
+      "background": "#332d42",
+      "ambientOpacity": 0,
+      "notes": "",
+      "elements": [
+        {
+          "kind": "text",
+          "name": "Song title",
+          "binding": "Title",
+          "text": "Together in Your Light",
+          "x": 160,
+          "y": 75,
+          "width": 1600,
+          "height": 65,
+          "fontSize": 28,
+          "fontFamily": "Inter",
+          "color": "#cfc4e2",
+          "opacity": 1,
+          "rotation": 0,
+          "visible": true,
+          "locked": false,
+          "alignment": "center"
+        },
+        {
+          "kind": "text",
+          "name": "Primary lyrics",
+          "binding": "Primary lyrics",
+          "text": "We gather in Your light\nWe lift our hearts in praise",
+          "x": 160,
+          "y": 240,
+          "width": 1600,
+          "height": 330,
+          "fontSize": 84,
+          "fontFamily": "Inter",
+          "color": "#f6f3ec",
+          "opacity": 1,
+          "rotation": 0,
+          "visible": true,
+          "locked": false,
+          "alignment": "center"
+        },
+        {
+          "kind": "text",
+          "name": "Translated lyrics",
+          "binding": "Translated lyrics",
+          "text": "నీ వెలుగులో కూడుదము\nస్తుతితో హృదయాలను పైకెత్తుదము",
+          "x": 160,
+          "y": 640,
+          "width": 1600,
+          "height": 260,
+          "fontSize": 64,
+          "fontFamily": "Noto Sans Telugu",
+          "color": "#e2d5ef",
+          "opacity": 1,
+          "rotation": 0,
+          "visible": true,
+          "locked": false,
+          "alignment": "center"
+        },
+        {
+          "kind": "text",
+          "name": "Credits",
+          "binding": "Credits",
+          "text": "Selah · Original demo lyrics · CC0",
+          "x": 160,
+          "y": 990,
+          "width": 1600,
+          "height": 55,
+          "fontSize": 22,
+          "fontFamily": "Inter",
+          "color": "#cfc4e2",
+          "opacity": 1,
+          "rotation": 0,
+          "visible": true,
+          "locked": false,
+          "alignment": "center"
+        }
+      ]
+    }
+  }
+}
