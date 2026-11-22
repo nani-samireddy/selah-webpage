@@ -616,3 +616,136 @@
     transform: none;
   }
 }
+.repository-note {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #b9b0bf;
+  margin: 0 0 8px;
+}
+.repository-source {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #938b99;
+  margin: 0 0 25px;
+}
+.repository-source a {
+  color: #cbb5df;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.resource-toolbar {
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.resource-filters {
+  flex: 1 1 460px;
+}
+.language-filter {
+  flex: 0 1 200px;
+  position: relative;
+}
+.language-filter:after {
+  content: "";
+  position: absolute;
+  right: 14px;
+  top: 17px;
+  width: 6px;
+  height: 6px;
+  border-right: 1px solid #bfb3c8;
+  border-bottom: 1px solid #bfb3c8;
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+.language-filter select {
+  width: 100%;
+  appearance: none;
+  min-height: 44px;
+  border: 1px solid #393633;
+  border-radius: 10px;
+  padding: 10px 33px 10px 13px;
+  background: #1b1b19;
+  color: #ded6e5;
+  font: inherit;
+  font-size: 12px;
+}
+.language-filter select:focus-visible {
+  outline: 2px solid #a58acb;
+  outline-offset: 2px;
+}
+.resource-search {
+  flex: 0 1 230px;
+}
+.download-status {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #d3bedf;
+  margin: 0 0 20px;
+  overflow-wrap: anywhere;
+}
+.download-status:empty {
+  display: none;
+}
+.resource-download[aria-disabled="true"] {
+  opacity: 0.65;
+  cursor: progress;
+}
+.load-more-wrap {
+  text-align: center;
+  margin: 35px 0 0;
+}
+.load-more-wrap:has([hidden]) {
+  display: none;
+}
+.load-more-wrap [hidden] {
+  display: none;
+}
+@media (max-width: 1000px) {
+  .resource-toolbar {
+    align-items: stretch;
+    flex-direction: row;
+  }
+  .resource-filters {
+    flex-basis: 100%;
+  }
+  .resource-search {
+    flex: 1;
+    max-width: none;
+  }
+  .language-filter {
+    flex: 1;
+  }
+}
+@media (max-width: 700px) {
+  .repository-note {
+    font-size: 14px;
+    line-height: 1.85;
+  }
+  .repository-source {
+    font-size: 12px;
+    margin-bottom: 23px;
+  }
+  .resource-toolbar {
+    gap: 14px;
+  }
+  .resource-filters {
+    flex-basis: 100%;
+  }
+  .language-filter,
+  .resource-search {
+    flex-basis: 100%;
+  }
+  .language-filter select {
+    font-size: 16px;
+    min-height: 48px;
+  }
+  .language-filter:after {
+    top: 19px;
+  }
+  .download-status {
+    font-size: 13px;
+  }
+  .load-more-wrap .button {
+    width: 100%;
+    min-height: 50px;
+  }
+}

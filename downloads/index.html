@@ -107,6 +107,16 @@
             service.
           </p>
         </div>
+        <p class="repository-note" id="repository-note"></p>
+        <p class="repository-source">
+          Original Beblia XML files are downloaded directly from
+          <a
+            href="https://github.com/nani-samireddy/Holy-Bible-XML-Format"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Holy-Bible-XML-Format on GitHub</a
+          >.
+        </p>
         <div class="resource-toolbar">
           <div
             class="resource-filters"
@@ -123,6 +133,12 @@
               Templates
             </button>
           </div>
+          <label class="language-filter"
+            ><span class="sr-only">Language group</span
+            ><select id="resource-language" aria-label="Language group">
+              <option value="">All language groups</option>
+            </select></label
+          >
           <label class="resource-search"
             ><svg viewBox="0 0 24 24" aria-hidden="true">
               <circle cx="10.5" cy="10.5" r="6.5" />
@@ -141,7 +157,18 @@
           role="status"
           aria-live="polite"
         ></p>
+        <p
+          class="download-status"
+          id="download-status"
+          role="status"
+          aria-live="polite"
+        ></p>
         <div class="resource-grid" id="resource-grid"></div>
+        <div class="load-more-wrap">
+          <button class="button button-white" id="load-more" hidden>
+            Show more resources
+          </button>
+        </div>
         <div class="resource-empty" id="resource-empty" hidden>
           <h3>No resources found.</h3>
           <p>Try another title, language, or resource type.</p>
@@ -175,10 +202,18 @@
           </div>
           <div class="guide-list">
             <div>
-              <span>Bibles</span>
+              <span>Bundled Bible packages</span>
               <p>
                 Libraries → Bible → Import translation. These three versions
                 already come with Selah; import only a missing version.
+              </p>
+            </div>
+            <div>
+              <span>Repository XML Bibles</span>
+              <p>
+                Download the original XML. Import requires a Selah build with
+                Beblia XML support; these files are separate from Selah JSON
+                packages.
               </p>
             </div>
             <div>

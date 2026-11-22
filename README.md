@@ -41,3 +41,17 @@ npm run build
 The catalog includes three complete 66-book Bible packages, two song collections, three bound templates, and a six-item service preset. The starter kit contains songs, templates, and the service preset; Bibles are separate downloads. Verse text and source notices are preserved. Five blank WEB source records are omitted to satisfy Selah's nonempty-verse import requirement; original numbering remains intact and this is documented inside its ZIP. Already-bundled translations do not need reimporting.
 
 Bible metadata and original source notices retain their public-domain or CC BY-SA terms. Original example lyrics explicitly marked CC0 are included; the user-supplied song without established distribution terms is excluded. Newly created layouts are CC0.
+
+## Repository Bible catalog
+
+The Downloads page additionally indexes all 1,048 XML files from `nani-samireddy/Holy-Bible-XML-Format` on its `master` branch. These files are not mirrored or converted. Search covers original filenames and display names; language groups follow the repository filename prefixes. Results are paginated in batches of 12.
+
+Refresh the checked-in public metadata with:
+
+```sh
+python3 scripts/sync-bible-catalog.py
+```
+
+The sync uses GitHub's recursive tree API rather than the Contents API's 1,000-entry directory limit, and refuses truncated results. File paths, sizes, and Git blob hashes are retained. The build needs no GitHub credentials or network calls.
+
+XML Download buttons fetch the original file via CORS, create a temporary blob URL, and trigger a browser download with its original filename. Failed, empty, or timed-out requests show a retry state. Source links remain available separately. These repository files use Beblia XML, so importing them requires app support for that format; this website does not claim they are Selah JSON or assign a new license to them.
