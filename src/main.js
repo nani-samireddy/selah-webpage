@@ -7,21 +7,21 @@ const workspaces = {
     tag: "PROGRAMS",
     title: "One service. Every detail.",
     description:
-      "Gather songs, Scripture, and slides into a saved service order. Arrange each moment and add private notes, all before Sunday arrives.",
+      "Gather songs, Scripture, media, and slides into one service order. Add private notes, set transitions, and save the whole program for the team.",
     alt: "Selah Programs with a populated Sunday service, welcome slides, hymns, and Scripture",
   },
   design: {
     tag: "DESIGN",
     title: "Your message. Your canvas.",
     description:
-      "Shape the look of your service with editable text, layers, backgrounds, and reusable templates. Create once, and make it part of your church’s rhythm.",
+      "Make reusable layouts with editable text, gradients, images, and fonts you can preview. Fine-tune text fitting and slide transitions before presenting.",
     alt: "Selah Design editor with an editable welcome presentation",
   },
   present: {
     tag: "PRESENT",
     title: "Ready for the next moment.",
     description:
-      "Keep live and upcoming slides in view. Navigate the whole service, see speaker notes, and control the audience output from one focused workspace.",
+      "See what’s live and what’s next. Use Quick Add for an unexpected moment, run saved service cues, and keep audience, speaker, and musician views in step.",
     alt: "Selah Present workspace displaying Amazing Grace and the next verse",
   },
 };

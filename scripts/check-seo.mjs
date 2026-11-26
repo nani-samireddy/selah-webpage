@@ -63,7 +63,7 @@ assert.ok(
   "Initial results are available without JS",
 );
 const sitemap = await readFile(resolve(root, "sitemap.xml"), "utf8");
-assert.equal((sitemap.match(/<loc>/g) || []).length, 48);
+assert.equal((sitemap.match(/<loc>/g) || []).length, 50);
 for (const path of [
   "llms.txt",
   "llms-full.txt",

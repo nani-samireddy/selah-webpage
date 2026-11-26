@@ -1897,3 +1897,30 @@ h2 {
 .button[aria-current="page"] {
   color: #171716 !important;
 }
+
+/* Keep support and policy links available on every page. */
+.footer-legal { display:flex; flex-wrap:wrap; gap:20px; }
+.footer-legal a { min-height:24px; }
+@media(max-width:760px) {
+  .footer-bottom > .footer-legal:nth-child(2) { display:flex; }
+  .footer-legal a { min-height:44px; display:inline-flex; align-items:center; }
+}
+
+.product-details { padding-block: 60px 100px; }
+.product-detail-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px; }
+.product-detail-card { display:flex; flex-direction:column; border:1px solid #36332e; border-radius:22px; padding:30px; background:#1a1a18; }
+.product-detail-card:nth-child(3n + 2) { background:#222029; }
+.product-detail-card .eyebrow { font-size:11px; line-height:1.7; letter-spacing:1.3px; margin-bottom:22px; }
+.product-detail-card h3 { font-size:30px; line-height:1.2; letter-spacing:-1.2px; margin:0 0 20px; font-weight:500; }
+.product-detail-card > p:not(.eyebrow) { font-size:16px; line-height:1.8; color:#b9b6bd; margin:0 0 28px; }
+.detail-tag { font-size:13px; line-height:1.7; color:#e2d1ff; margin-top:auto; padding-top:18px; border-top:1px solid #ffffff16; }
+.product-details-note { font-size:14px; line-height:1.8; color:#aaa5af; margin-top:26px; }
+.product-details-note a { color:#e2d1ff; text-decoration:underline; text-underline-offset:3px; }
+.footer-legal { font-size:12px; }
+@media(max-width:1000px) { .product-detail-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:700px) {
+  .product-details { padding-block:30px 60px; }
+  .product-detail-grid { grid-template-columns:1fr; gap:16px; }
+  .product-detail-card { padding:26px; }
+  .product-detail-card h3 { font-size:29px; }
+}

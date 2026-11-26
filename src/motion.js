@@ -25,7 +25,7 @@ const revealGroups = [
   [".content-types > div", 110],
   [".section-heading > div, .section-heading > p", 100],
   [".workspace-tabs, .workspace-panel", 80],
-  [".feature-card", 100],
+  [".feature-card, .product-detail-card", 100],
   [".live-showcase", 0],
   [".live-benefits > div", 100],
   [

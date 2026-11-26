@@ -10,7 +10,7 @@ export const repositoryResources = bibleCatalog.files.map((file) => ({
   description: `Original XML file from the Holy-Bible-XML-Format collection.`,
   license: "Rights and attribution: see the source file.",
   instruction:
-    "Saves the original Beblia XML file. Import requires a Selah build that supports Beblia XML; this file is not a converted Selah JSON package.",
+    "Saves the original XML file. In Selah, open Libraries → Bible → Import translation to import this file, then use it offline.",
   source: `https://github.com/${bibleCatalog.repository}/blob/${bibleCatalog.branch}/${encodedPath(file.path)}`,
   downloadUrl: `https://raw.githubusercontent.com/${bibleCatalog.repository}/${bibleCatalog.branch}/${encodedPath(file.path)}`,
   bundled: false,

@@ -1,0 +1,38 @@
+.resource-hero.information-hero { padding: 76px 25px 56px; }
+.information-hero .resource-intro { max-width: 640px; margin-inline: auto; }
+.information-date { color: #6b626e; font-size: 14px; }
+.policy-layout { display: grid; grid-template-columns: 230px minmax(0, 720px); justify-content: space-between; gap: 64px; padding-block: 72px 96px; }
+.policy-index nav { position: sticky; top: 110px; }
+.policy-index a { display: block; color: #beb9c3; font-size: 14px; line-height: 1.5; padding-block: 7px; }
+.policy-index a:hover { color: #e2d1ff; }
+.policy-section { scroll-margin-top: 110px; margin-bottom: 42px; }
+.policy-section:last-child { margin-bottom: 0; }
+.policy-section h2 { font-size: clamp(25px, 2.5vw, 34px); letter-spacing: -1px; line-height: 1.2; margin: 0 0 20px; }
+.policy-section p, .policy-section li, .contact-card p { font-size: 16px; line-height: 1.85; color: #bbb8bf; }
+.policy-section p { margin: 0 0 16px; }
+.policy-section li { margin-bottom: 14px; }
+.policy-section ul { padding-left: 22px; }
+.policy-section strong { color: #e6e4dd; font-weight: 550; }
+.policy-section a, .contact-link, .contact-help a { color: #e2d1ff; text-decoration: underline; text-underline-offset: 4px; overflow-wrap: anywhere; }
+.contact-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 24px; padding-block: 64px; }
+.contact-card { background: #1a1a18; border: 1px solid #36332e; border-radius: 22px; padding: clamp(26px,4vw,48px); }
+.contact-card h2, .contact-help h2 { font-size: clamp(28px,3vw,40px); line-height: 1.2; letter-spacing: -1.5px; margin: 20px 0; }
+.contact-card p { margin-bottom: 25px; }
+.contact-card .eyebrow { font-size: 12px; line-height: 1.6; }
+.contact-card .contact-note { font-size: 14px; margin-top: 24px; margin-bottom: 0; }
+.contact-card-wide { grid-column: 1/-1; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; background: #24212b; }
+.contact-card-wide h2 { margin-bottom: 0; }
+.contact-card-wide > div:last-child { align-self: center; }
+.contact-policy { display: block; margin-top: 22px; }
+.contact-help { padding-bottom: 80px; }
+.contact-help p { display:flex; flex-wrap:wrap; gap:20px 32px; font-size:16px; line-height:1.8; }
+@media(max-width:760px) {
+  .resource-hero.information-hero { padding: 48px 22px 38px; }
+  .resource-hero.information-hero h1 { font-size: clamp(40px,9vw,64px); letter-spacing: -2.5px; }
+  .information-hero .resource-intro { font-size:16px; }
+  .policy-layout { grid-template-columns:1fr; gap:36px; padding-block:40px 60px; }
+  .policy-index nav { position: static; border-bottom:1px solid #36332e; padding-bottom:30px; }
+  .policy-index a { min-height:44px; padding-block:11px; }
+  .contact-grid { grid-template-columns:1fr; padding-block:36px; gap:16px; }
+  .contact-card-wide { grid-template-columns:1fr; gap:10px; }
+}

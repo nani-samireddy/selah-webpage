@@ -40,6 +40,13 @@ const app = {
     "Editable presentation templates",
     "Audience and speaker views",
     "Local-network remote control",
+    "Dual Bible slides and XML Bible import",
+    "Musician chords and ChordPro import",
+    "Quick Add and live Scripture reading",
+    "Saved service cues and slide transitions",
+    "Portable programs and full backup/restore",
+    "Optional local Luma search assistant",
+    "Offline guides and interactive walkthroughs",
   ],
   sameAs: "https://github.com/nani-samireddy/Selah",
 };
@@ -69,6 +76,11 @@ function metadata(html, { path, title, description, type = "WebPage", items }) {
     isPartOf: { "@id": site["@id"] },
     about: { "@id": app["@id"] },
   };
+  if (path === "/contact/") page.mainEntity = {
+    "@type": "Person", "@id": `${origin}/#maintainer`, name: "Sami Reddy",
+    email: "mailto:samireddynani0@gmail.com", url: `${origin}/contact/`,
+  };
+  if (path === "/privacy/") page.dateModified = "2026-11-26";
   const graph = [site, app, page];
   if (releaseSnapshot.releases.length) {
     app.softwareVersion = releaseSnapshot.releases[0].tag;
@@ -86,10 +98,9 @@ function metadata(html, { path, title, description, type = "WebPage", items }) {
     page.hasPart = entries;
   }
   const crumbs = [{ name: "Selah", url: origin + "/" }];
-  if (path !== "/")
-    crumbs.push({ name: "Downloads", url: origin + "/downloads/" });
   if (path.startsWith("/downloads/bibles/"))
-    crumbs.push({ name: title, url: canonical });
+    crumbs.push({ name: "Resources", url: origin + "/downloads/" });
+  if (path !== "/") crumbs.push({ name: title, url: canonical });
   graph.push({
     "@type": "BreadcrumbList",
     "@id": canonical + "#breadcrumbs",
@@ -145,7 +156,7 @@ home = metadata(home, {
   path: "/",
   title: "Selah — Church Presentation Software for Worship Services",
   description:
-    "Prepare songs, Bible passages, slides, and media in one church presentation app. Explore Selah’s multilingual lyrics, service programs, and speaker views.",
+    "Prepare worship services with bilingual lyrics, dual Bible slides, musician chords, media, Quick Add, and speaker views. Explore the Selah desktop app.",
 });
 await writeFile(homePath, home);
 let downloads = await readFile(resolve(root, "downloads/index.html"), "utf8");
@@ -195,12 +206,37 @@ for (const [route, title, description, marker, content] of [
     `# ${title}\n\n${description}\n\n${releaseSnapshot.releases.length ? releaseSnapshot.releases.map((r) => `## ${r.name} (${r.tag})\n\n${r.notes}\n\nSource: ${r.url}\n`).join("\n") : "No public app releases have been published. macOS and Windows installer links appear only when a matching release asset is published."}\n`,
   );
 }
+// Keep the plain-text references aligned with the visible information pages.
+const informationMarkdown = [];
+for (const [route, title, description, type] of [
+  ["privacy", "Selah Privacy Policy", "How Selah handles website requests, local app data, optional online features, and support enquiries.", "WebPage"],
+  ["contact", "Contact Selah", "Contact Sami Reddy for Selah support, product feedback, privacy requests, and security enquiries.", "ContactPage"],
+]) {
+  const file = resolve(root, route, "index.html");
+  let html = await readFile(file, "utf8");
+  const main = html.match(/<main id="main">([\s\S]*?)<\/main>/)[1];
+  const markdown = main
+    .replace(/<aside[\s\S]*?<\/aside>/g, "")
+    .replace(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g, (_, href, label) => `[${label.replace(/<[^>]+>/g, "")}](${href.startsWith("/") ? origin + href : href})`)
+    .replace(/<h1[^>]*>/g, "# ").replace(/<h2[^>]*>/g, "## ")
+    .replace(/<br\s*\/?>/g, " ")
+    .replace(/<li>/g, "\n- ")
+    .replace(/<\/(?:h1|h2|p|section|article)>/g, "\n\n")
+    .replace(/<[^>]+>/g, "")
+    .replaceAll("&amp;", "&").replaceAll("&gt;", ">").replaceAll("&lt;", "<")
+    .replace(/\n{3,}/g, "\n\n").trim() + "\n";
+  informationMarkdown.push(markdown);
+  html = metadata(html, {path: `/${route}/`, title, description, type});
+  await writeFile(file, html);
+  await save(`/${route}/index.md`, markdown);
+}
+
 const template = await readFile(resolve(root, "catalog.html"), "utf8");
 const pageSize = 24,
   total = Math.ceil(repositoryResources.length / pageSize);
 const pagePath = (n) =>
   n === 1 ? "/downloads/bibles/" : `/downloads/bibles/page/${n}/`;
-const pages = ["/", "/downloads/", "/download/", "/changelog/"];
+const pages = ["/", "/downloads/", "/download/", "/changelog/", "/privacy/", "/contact/"];
 const allMarkdown = [];
 for (let n = 1; n <= total; n++) {
   const path = pagePath(n),
@@ -225,7 +261,7 @@ for (let n = 1; n <= total; n++) {
     .join(
       "",
     )}${n < total ? `<a rel="next" href="${pagePath(n + 1)}">Next page</a>` : ""}</nav>`;
-  const main = `<main id="main"><section class="catalog-intro section-wrap"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Selah</a><span>/</span><a href="/downloads/">Downloads</a><span>/</span><span aria-current="page">XML Bibles</span></nav><p class="eyebrow muted">THE COMPLETE BIBLE FILE CATALOG</p><h1>XML Bible downloads${n > 1 ? ` · Page ${n}` : ""}</h1><p>Browse all ${repositoryResources.length.toLocaleString()} original XML files from <a class="catalog-link" href="https://github.com/nani-samireddy/Holy-Bible-XML-Format">Holy-Bible-XML-Format</a>. This catalog works without JavaScript. For search and language filters, use the <a class="catalog-link" href="/downloads/">interactive resource library</a>.</p><p>These are original Beblia XML files. Import requires a Selah build supporting this format; they are not converted Selah JSON packages. File rights and attribution remain with their sources.</p>${nav}</section><section class="catalog-results section-wrap" aria-label="Bible files"><p id="download-status" role="status" aria-live="polite"></p><div class="resource-grid">${batch.map((r) => card(r).replaceAll("<h3>", "<h2>").replaceAll("</h3>", "</h2>")).join("")}</div>${nav}</section></main>`;
+  const main = `<main id="main"><section class="catalog-intro section-wrap"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Selah</a><span>/</span><a href="/downloads/">Downloads</a><span>/</span><span aria-current="page">XML Bibles</span></nav><p class="eyebrow muted">THE COMPLETE BIBLE FILE CATALOG</p><h1>XML Bible downloads${n > 1 ? ` · Page ${n}` : ""}</h1><p>Browse all ${repositoryResources.length.toLocaleString()} original XML files from <a class="catalog-link" href="https://github.com/nani-samireddy/Holy-Bible-XML-Format">Holy-Bible-XML-Format</a>. This catalog works without JavaScript. For search and language filters, use the <a class="catalog-link" href="/downloads/">interactive resource library</a>.</p><p>These are original Beblia XML files. Import a downloaded file through Libraries → Bible → Import translation, or browse the catalog in the app. Imported Bibles work offline. File rights and attribution remain with their sources.</p>${nav}</section><section class="catalog-results section-wrap" aria-label="Bible files"><p id="download-status" role="status" aria-live="polite"></p><div class="resource-grid">${batch.map((r) => card(r).replaceAll("<h3>", "<h2>").replaceAll("</h3>", "</h2>")).join("")}</div>${nav}</section></main>`;
   let html = template.replace(/<main id="main">[\s\S]*?<\/main>/, main);
   html = metadata(html, {
     path,
@@ -236,13 +272,13 @@ for (let n = 1; n <= total; n++) {
   });
   await save(path + "index.html", html);
   pages.push(path);
-  const md = `# ${title}\n\n${description}\n\nSource: https://github.com/nani-samireddy/Holy-Bible-XML-Format\n\nOriginal Beblia XML; requires compatible app import support. Source rights are not reassigned.\n\n${batch.map((r) => `- [${r.title}](${r.downloadUrl}): ${r.filename}; ${r.bytes} bytes. [Source](${r.source}).`).join("\n")}\n\n${n > 1 ? `[Previous page](${origin + pagePath(n - 1)}index.md)\n` : ""}${n < total ? `[Next page](${origin + pagePath(n + 1)}index.md)\n` : ""}`;
+  const md = `# ${title}\n\n${description}\n\nSource: https://github.com/nani-samireddy/Holy-Bible-XML-Format\n\nOriginal Beblia XML; import through Libraries → Bible → Import translation in the current app. Source rights are not reassigned.\n\n${batch.map((r) => `- [${r.title}](${r.downloadUrl}): ${r.filename}; ${r.bytes} bytes. [Source](${r.source}).`).join("\n")}\n\n${n > 1 ? `[Previous page](${origin + pagePath(n - 1)}index.md)\n` : ""}${n < total ? `[Next page](${origin + pagePath(n + 1)}index.md)\n` : ""}`;
   await save(path + "index.md", md);
   allMarkdown.push(md);
 }
 await rm(resolve(root, "catalog.html"));
-const facts = `# Selah\n\n> Native church presentation software for preparing and presenting worship services.\n\n${appDescription}\n\n## Features\n\n- Prepare songs, Scripture, images, videos, and custom slides in saved service programs.\n- Work with paired original and translated song lyrics and reusable arrangements.\n- Use bundled offline English WEB, Telugu IRV, and Hindi IRV Bible libraries.\n- Create editable layouts and explicitly take prepared content live.\n- Use dedicated audience and speaker views, private notes, and timers.\n- Pair a phone or tablet on a trusted local network for control or a read-only speaker view. Physical-device validation is ongoing.\n\n## Availability\n\nThe application is a development preview, targeting macOS and Windows. Windows release validation is ongoing. Public app downloads and supported release requirements will be shared when ready. No app price or commercial license is announced on this site. Resource downloads are available now. The source is at https://github.com/nani-samireddy/Selah.\n\n## Resources\n\nThe library contains ${repositoryResources.length} original XML Bible files from Holy-Bible-XML-Format, plus three Selah JSON Bible packages, two song collections, three templates, and one service preset. External files retain source attribution and rights. Original demo lyrics are CC0; Amazing Grace is public domain. Telugu and Hindi IRV packages retain Bridge Connectivity Solutions attribution and CC BY-SA 4.0 notices.\n\nBeblia XML files are not Selah JSON packages and require compatible app import support. Existing bundled translations need no reimporting.\n\n## Links\n\n- [App downloads](${origin}/download/)\n- [Changelog](${origin}/changelog/)\n- [Website](${origin}/)\n- [Downloads](${origin}/downloads/)\n- [Static XML catalog](${origin}/downloads/bibles/)\n- [Source code](https://github.com/nani-samireddy/Selah)\n`;
-const downloadMd = `# Selah resource downloads\n\nFind songs, service presets, templates, and Bible packages at ${origin}/downloads/.\n\n## Import instructions\n\n- Selah JSON Bibles: unzip; Libraries → Bible → Import translation. Bundled versions need no reimport.\n- Repository Bibles: download original Beblia XML; requires app support for that format.\n- Song collections: unzip; Libraries → Songs → Import song, one JSON at a time.\n- Templates: Libraries → Templates → Import the .churchtemplate file.\n- Service preset: Programs → Import the .churchprogram file, then update its date and title.\n\n## Starter resources\n\n${resources
+const facts = `# Selah\n\n> Native church presentation software for preparing and presenting worship services.\n\n${appDescription}\n\n## Features\n\n- Prepare songs, Scripture, images, video, audio, and custom slides in saved service programs.\n- Work with paired original and translated song lyrics and reusable arrangements.\n- Use bundled offline English WEB, Telugu IRV, and Hindi IRV Bible libraries. Import additional XML/JSON Bibles and show two translations together.\n- Import ChordPro songs and show chords/cues on musician screens while audience lyrics stay clean.\n- Preview and queue songs, Scripture, text, or media through Quick Add; return to your saved service afterward.\n- Follow Scripture readings verse by verse, without rewriting the saved program.\n- Run saved service cue sequences for displays, countdowns, media, and configured equipment commands.\n- Style reusable layouts with gradients, images, transparency, text fitting, downloadable fonts, and presentation slide transitions.\n- Export portable programs with media/template snapshots; back up and restore the complete workspace. Matching fonts are needed on the destination computer.\n- Optionally download and enable Luma for local song/Scripture search proposals, reviewed before running. No AI is required for normal use.\n- Follow offline user guides and interactive walkthroughs; choose light/dark/system appearance, reduced motion, and interface sounds.\n- Create editable layouts and explicitly take prepared content live.\n- Use dedicated audience and speaker views, private notes, and timers.\n- Pair a phone or tablet on a trusted local network for control or a read-only speaker view. Physical-device validation is ongoing.\n\n## Availability\n\nThe application is a development preview, targeting macOS and Windows. Windows release validation is ongoing. Public app downloads and supported release requirements will be shared when ready. No app price or commercial license is announced on this site. Resource downloads are available now. The source is at https://github.com/nani-samireddy/Selah.\n\n## Resources\n\nThe library contains ${repositoryResources.length} original XML Bible files from Holy-Bible-XML-Format, plus three Selah JSON Bible packages, two song collections, three templates, and one service preset. External files retain source attribution and rights. Original demo lyrics are CC0; Amazing Grace is public domain. Telugu and Hindi IRV packages retain Bridge Connectivity Solutions attribution and CC BY-SA 4.0 notices.\n\nThe current app imports XML and JSON translations through Libraries → Bible → Import translation, including the website’s original Beblia XML files. Existing bundled translations need no reimporting.\n\n## Links\n\n- [App downloads](${origin}/download/)\n- [Changelog](${origin}/changelog/)\n- [Website](${origin}/)\n- [Downloads](${origin}/downloads/)\n- [Static XML catalog](${origin}/downloads/bibles/)\n- [Source code](https://github.com/nani-samireddy/Selah)\n`;
+const downloadMd = `# Selah resource downloads\n\nFind songs, service presets, templates, and Bible packages at ${origin}/downloads/.\n\n## Import instructions\n\n- Selah JSON Bibles: unzip; Libraries → Bible → Import translation. Bundled versions need no reimport.\n- Repository Bibles: download the original XML, then Libraries → Bible → Import translation; imported Bibles work offline.\n- Song collections: unzip; Libraries → Songs → Import song, one JSON at a time.\n- Templates: Libraries → Templates → Import the .churchtemplate file.\n- Service preset: Programs → Import the .churchprogram file, then update its date and title.\n\n## Starter resources\n\n${resources
   .slice(0, 9)
   .map(
     (r) =>
@@ -259,7 +295,7 @@ await save(
 );
 await save(
   "/llms.txt",
-  `# Selah\n\n> Native church presentation app and resource library for worship services.\n\nThe app is a development preview; public app downloads are being prepared. Website resource downloads are available. External Bible files remain original Beblia XML and require compatible import support. This file is a navigation aid, not a ranking or citation guarantee.\n\n## Product\n\n- [App downloads](${origin}/download/index.md): Platform installers and availability.\n- [Changelog](${origin}/changelog/index.md): Published version history.\n- [Selah facts and availability](${origin}/index.md): Features, status, platforms, and resource attribution.\n- [Downloads and import guide](${origin}/downloads/index.md): Songs, templates, service presets, and Bible package instructions.\n\n## Bible files\n\n- [Complete XML catalog](${origin}/downloads/bibles/index.md): ${repositoryResources.length} original files with download links, paginated in Markdown.\n- [Bible catalog data](${origin}/bible-catalog.json): Original filenames, sizes, source hashes, and language groups.\n\n## Optional\n\n- [Expanded reference](${origin}/llms-full.txt): Product facts, resource guide, and the complete file listing.\n- [App source](https://github.com/nani-samireddy/Selah): Selah development project.\n- [Bible source](https://github.com/nani-samireddy/Holy-Bible-XML-Format): Original XML collection.\n`,
+  `# Selah\n\n> Native church presentation app and resource library for worship services.\n\nThe app is a development preview; public app downloads are being prepared. Website resource downloads are available. External Bible files remain original Beblia XML and can be imported through Libraries → Bible → Import translation in the current app. This file is a navigation aid, not a ranking or citation guarantee.\n\n## Product\n\n- [App downloads](${origin}/download/index.md): Platform installers and availability.\n- [Changelog](${origin}/changelog/index.md): Published version history.\n- [Privacy policy](${origin}/privacy/index.md): Data practices, local storage, optional services, and privacy requests.\n- [Contact](${origin}/contact/index.md): Support, feedback, and private enquiries.\n- [Selah facts and availability](${origin}/index.md): Features, status, platforms, and resource attribution.\n- [Downloads and import guide](${origin}/downloads/index.md): Songs, templates, service presets, and Bible package instructions.\n\n## Bible files\n\n- [Complete XML catalog](${origin}/downloads/bibles/index.md): ${repositoryResources.length} original files with download links, paginated in Markdown.\n- [Bible catalog data](${origin}/bible-catalog.json): Original filenames, sizes, source hashes, and language groups.\n\n## Optional\n\n- [Expanded reference](${origin}/llms-full.txt): Product facts, resource guide, and the complete file listing.\n- [App source](https://github.com/nani-samireddy/Selah): Selah development project.\n- [Bible source](https://github.com/nani-samireddy/Holy-Bible-XML-Format): Original XML collection.\n`,
 );
 await save(
   "/llms-full.txt",
@@ -271,7 +307,7 @@ await save(
     "\n" +
     (await readFile(resolve(root, "changelog/index.md"), "utf8")) +
     "\n" +
-    allMarkdown.join("\n"),
+    informationMarkdown.join("\n") + "\n" + allMarkdown.join("\n"),
 );
 await save(
   "/sitemap.xml",
